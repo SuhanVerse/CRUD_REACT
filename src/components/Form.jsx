@@ -4,47 +4,38 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 import "./Form.css";
 
-const Form = ({
-    addItem,
-    editItemId,
-    updateItemName,
-    itemToEdit,
-    inputRef,
-}) => {
-    const [newItemName, setNewItemName] = useState(itemToEdit?.name || "");
+const Form = ({ addItem, editItemId, updateItemName, itemToEdit, inputRef }) => {
+  const [newItemName, setNewItemName] = useState(itemToEdit?.name || "");
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        if (!newItemName) {
-            toast.error("please provide value");
-            return;
-        }
-        if (editItemId) {
-            updateItemName(newItemName);
-        } else {
-            addItem(newItemName);
-        }
-        setNewItemName("");
-    };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!newItemName) {
+      toast.error("please provide value");
+      return;
+    }
+    if (editItemId) {
+      updateItemName(newItemName);
+    } else {
+      addItem(newItemName);
+    }
+    setNewItemName("");
+  };
 
-    return (
-        <form onSubmit={handleSubmit}>
-            <h2>Grocery bud</h2>
-            <div className="form-control">
-                <input
-                    type="text"
-                    className="form-input"
-                    value={itemToEdit?.name || newItemName}
-                    ref={inputRef}
-                    placeholder="e.g. eggs"
-                    onChange={(event) => setNewItemName(event.target.value)}
-                />
-                <button type="submit" className="btn">
-                    {editItemId ? "edit item" : "add item"}
-                </button>
-            </div>
-        </form>
-    );
+  return (
+    <form className="grocery-form" onSubmit={handleSubmit}>
+      <input
+        type="text"
+        className="form-input"
+        value={itemToEdit?.name || newItemName}
+        ref={inputRef}
+        placeholder="Add grocery item..."
+        onChange={(event) => setNewItemName(event.target.value)}
+      />
+      <button type="submit" className="form-submit">
+        {editItemId ? "Update" : "Add"}
+      </button>
+    </form>
+  );
 };
 
 export default Form;

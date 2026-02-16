@@ -1,3 +1,5 @@
+// App.jsx
+
 import Items from "./components/Items";
 import { groceryItems } from "./data/groceryItems";
 import { useEffect, useRef, useState } from "react";

@@ -1,3 +1,5 @@
+// SingleItem.jsx
+
 import { FiEdit, FiTrash2 } from "react-icons/fi";
 import "./SingleItem.css";
 

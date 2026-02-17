@@ -29,6 +29,11 @@
     border-color: #e5e7eb;
 }
 
+.single-item.completed p {
+    text-decoration: line-through;
+    color: #9ca3af;
+}
+
 /* Custom Checkbox */
 .single-item input[type="checkbox"] {
     appearance: none;

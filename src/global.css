@@ -58,6 +58,8 @@ body {
     padding: 2rem;
     text-align: center;
     color: white;
+    /* ✅ pull header flush to card edges (overrides section-center padding) */
+    margin: -10px -10px 0 -10px;
 }
 
 .grocery-header h1 {
@@ -65,4 +67,12 @@ body {
     font-size: 2.5rem;
     font-weight: 900;
     margin: 0;
+}
+
+/* ✅ subtitle style that was missing */
+.grocery-header p {
+    margin: 0.4rem 0 0;
+    font-size: 0.95rem;
+    opacity: 0.85;
+    letter-spacing: 0.02em;
 }

@@ -75,6 +75,7 @@ const App = () => {
             </div>
             <ToastContainer position="top-center" />
             <Form
+                key={editId}
                 addItem={addItem}
                 updateItemName={updateItemName}
                 editItemId={editId}

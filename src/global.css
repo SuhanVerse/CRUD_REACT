@@ -1,78 +1,182 @@
-/* global.css */
+/* global.css — design system & layout */
 
-@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap");
 
 :root {
-    --color-primary: #2d5016;
-    --color-primary-light: #4a7c2c;
-    --color-accent: #ff6b35;
-    --color-bg: #fdfaf6;
+    /* Palette */
+    --color-primary: #1a3d0a;
+    --color-primary-mid: #2d5c14;
+    --color-primary-light: #4a8a28;
+    --color-accent: #e8622a;
+    --color-accent-hover: #cf4e1a;
+
+    /* Surfaces */
+    --color-bg: #f7f3ec;
     --color-card: #ffffff;
-    --color-text: #2c2c2c;
-    --color-text-muted: #6b7280;
-    --color-border: #e8e3db;
-    --color-success: #4a7c2c;
-    --color-danger: #dc2626;
-    --shadow-md: 0 4px 12px rgba(45, 80, 22, 0.08);
-    --shadow-lg: 0 10px 30px rgba(45, 80, 22, 0.12);
-    --radius: 16px;
-    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --color-stripe: #fafaf8;
+
+    /* Text */
+    --color-text: #1e1e1e;
+    --color-text-muted: #7a7a6e;
+    --color-text-light: #b0ae9e;
+
+    /* Borders */
+    --color-border: #e4ddd2;
+    --color-border-focus: #4a8a28;
+
+    /* Feedback */
+    --color-success: #4a8a28;
+    --color-danger: #d13030;
+    --color-danger-hover: #b02020;
+
+    /* Shadows */
+    --shadow-card:
+        0 2px 8px rgba(0, 0, 0, 0.06), 0 20px 60px rgba(26, 61, 10, 0.09);
+    --shadow-hover:
+        0 4px 16px rgba(0, 0, 0, 0.09), 0 24px 70px rgba(26, 61, 10, 0.13);
+    --shadow-btn: 0 2px 8px rgba(26, 61, 10, 0.25);
+
+    /* Shape */
+    --radius-card: 20px;
+    --radius-input: 12px;
+    --radius-btn: 12px;
+    --radius-item: 14px;
+
+    /* Motion */
+    --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+    --transition: all 0.25s var(--ease-in-out);
 }
 
-body {
-    background: linear-gradient(135deg, #fdfaf6 0%, #f5f1e8 100%);
-    font-family: "DM Sans", sans-serif;
-    line-height: 1.6;
-    color: var(--color-text);
+.app-bg {
     min-height: 100vh;
+    background:
+        radial-gradient(
+            ellipse 80% 60% at 20% -10%,
+            rgba(74, 138, 40, 0.1) 0%,
+            transparent 65%
+        ),
+        radial-gradient(
+            ellipse 60% 50% at 80% 110%,
+            rgba(232, 98, 42, 0.07) 0%,
+            transparent 60%
+        ),
+        var(--color-bg);
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 3rem 1rem 6rem;
 }
 
 .section-center {
-    margin: 4rem auto;
-    max-width: 540px;
+    width: 100%;
+    max-width: 520px;
     background: var(--color-card);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow-lg);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-card);
     overflow: hidden;
-    animation: slideIn 0.5s ease-out;
-    padding: 10px;
+    animation: cardIn 0.55s var(--ease-out) both;
 }
 
-@keyframes slideIn {
+@keyframes cardIn {
     from {
         opacity: 0;
-        transform: translateY(30px);
+        transform: translateY(28px) scale(0.98);
     }
     to {
         opacity: 1;
-        transform: translateY(0);
+        transform: translateY(0) scale(1);
     }
 }
 
 .grocery-header {
     background: linear-gradient(
-        135deg,
-        var(--color-primary),
-        var(--color-primary-light)
+        145deg,
+        var(--color-primary) 0%,
+        var(--color-primary-mid) 55%,
+        var(--color-primary-light) 100%
     );
-    padding: 2rem;
+    padding: 2.2rem 2rem 1.9rem;
     text-align: center;
-    color: white;
-    /* ✅ pull header flush to card edges (overrides section-center padding) */
-    margin: -10px -10px 0 -10px;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+}
+
+.grocery-header::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    pointer-events: none;
 }
 
 .grocery-header h1 {
     font-family: "Playfair Display", serif;
-    font-size: 2.5rem;
+    font-size: 2.4rem;
     font-weight: 900;
-    margin: 0;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    margin-bottom: 0.35rem;
+    position: relative;
 }
 
-/* ✅ subtitle style that was missing */
 .grocery-header p {
-    margin: 0.4rem 0 0;
-    font-size: 0.95rem;
-    opacity: 0.85;
-    letter-spacing: 0.02em;
+    font-size: 0.88rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    opacity: 0.7;
+    font-weight: 500;
+    position: relative;
+}
+
+.card-body {
+    padding: 1.6rem 1.75rem 2rem;
+}
+
+.stats-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.65rem 0;
+    border-bottom: 1px solid var(--color-border);
+    margin-bottom: 1.4rem;
+    font-size: 0.82rem;
+    color: var(--color-text-muted);
+    font-weight: 500;
+    letter-spacing: 0.01em;
+}
+
+.stats-bar .count {
+    background: var(--color-primary);
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    letter-spacing: 0.03em;
+}
+
+.clear-all-btn {
+    background: none;
+    border: none;
+    color: var(--color-danger);
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 0.2rem 0.4rem;
+    border-radius: 6px;
+    transition: var(--transition);
+    letter-spacing: 0.01em;
+}
+
+.clear-all-btn:hover {
+    background: rgba(209, 48, 48, 0.08);
+}
+
+.Toastify__toast {
+    text-transform: capitalize;
+    font-family: "DM Sans", sans-serif;
+    font-size: 0.9rem;
+    border-radius: 10px;
 }
